@@ -1,0 +1,33 @@
+{
+  "name": "ngshop",
+  "version": "1.0.0",
+  "description": "MEAN Full Stack application Ng Shop: An E-commerce app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server",
+    "server": "nodemon backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanCamiloChafloque/NgShop.git"
+  },
+  "author": "Juan Camilo Chafloque",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanCamiloChafloque/NgShop/issues"
+  },
+  "homepage": "https://github.com/JuanCamiloChafloque/NgShop#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
