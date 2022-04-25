@@ -1,15 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
 const path = require("path");
+const cors = require("cors");
 const db = require("./config/database");
 const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/errors");
 const bodyParser = require("body-parser");
 
-//Dot ENV Init
-if (process.env.NODE_ENV === "production") {
-  dotenv.config();
-}
+dotenv.config();
 
 //Routes
 
@@ -20,9 +19,25 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 //JSON Parser middleware
+app.use(cors());
+app.options("*", cors());
+app.use(morgan("tiny"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+//CORS
+app.use((req, res, next) => {
+  res.header("Content-Type: application/json");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  res.header("Allow", "GET, PUT, POST, DELETE, OPTIONS");
+  next();
+});
 
 //Routes Initialization
 
