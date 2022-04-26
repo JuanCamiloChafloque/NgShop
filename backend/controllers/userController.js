@@ -29,3 +29,47 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find({}).select("-password");
+  if (!users) {
+    return next(new ErrorHandler("There are no users registered.", 404));
+  }
+  res.status(200).json({ success: true, count: users.length, users: users });
+});
+
+exports.getUserById = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const user = await User.findById(id).select("-password");
+  if (!user) {
+    return next(
+      new ErrorHandler("The user with id " + id + " does not exist", 404)
+    );
+  }
+  res.status(200).json({ success: true, user: user });
+});
+
+exports.updateUserById = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  if (!req.body.name || !req.body.email) {
+    return next(new ErrorHandler("Please enter your name and email", 400));
+  }
+
+  const user = await User.findById(id);
+  if (!user) {
+    return next(
+      new ErrorHandler("The user with id " + id + " does not exist", 404)
+    );
+  }
+
+  user.name = req.body.name;
+  user.email = req.body.email;
+
+  if (req.body.password) {
+    user.password = req.body.password;
+  }
+
+  const newUser = await user.save();
+
+  res.status(200).json({ success: true, user: newUser });
+});
