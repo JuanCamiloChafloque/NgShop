@@ -11,14 +11,17 @@ const {
 } = require("../controllers/userController");
 
 // Auth Middlewares
-const { isAuthenticatedUser } = require("../middleware/auth");
+const {
+  isAuthenticatedUser,
+  isAuthorizedRoles,
+} = require("../middleware/auth");
 
 router.route("/register").post(register);
 router.route("/login").post(login);
-router.route("/").get(isAuthenticatedUser, getAllUsers);
+router.route("/").get(isAuthenticatedUser, isAuthorizedRoles(), getAllUsers);
 router
   .route("/:id")
   .get(isAuthenticatedUser, getUserById)
-  .put(isAuthenticatedUser, updateUserById);
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateUserById);
 
 module.exports = router;

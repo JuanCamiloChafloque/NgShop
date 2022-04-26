@@ -11,16 +11,19 @@ const {
 } = require("../controllers/categoryController");
 
 // Auth Middlewares
-const { isAuthenticatedUser } = require("../middleware/auth");
+const {
+  isAuthenticatedUser,
+  isAuthorizedRoles,
+} = require("../middleware/auth");
 
 router
   .route("/")
-  .get(isAuthenticatedUser, getAllCategories)
-  .post(isAuthenticatedUser, createCategory);
+  .get(getAllCategories)
+  .post(isAuthenticatedUser, isAuthorizedRoles(), createCategory);
 router
   .route("/:id")
-  .get(isAuthenticatedUser, getCategoryById)
-  .put(isAuthenticatedUser, updateCategoryById)
-  .delete(isAuthenticatedUser, deleteCategory);
+  .get(getCategoryById)
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateCategoryById)
+  .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteCategory);
 
 module.exports = router;

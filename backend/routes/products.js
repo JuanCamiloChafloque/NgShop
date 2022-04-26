@@ -12,18 +12,21 @@ const {
 } = require("../controllers/productController");
 
 // Auth Middlewares
-const { isAuthenticatedUser } = require("../middleware/auth");
+const {
+  isAuthenticatedUser,
+  isAuthorizedRoles,
+} = require("../middleware/auth");
 
 router
   .route("/")
-  .get(isAuthenticatedUser, getAllProducts)
-  .post(isAuthenticatedUser, createProduct);
+  .get(getAllProducts)
+  .post(isAuthenticatedUser, isAuthorizedRoles(), createProduct);
 
-router.route("/featured").get(isAuthenticatedUser, getFeaturedProducts);
+router.route("/featured").get(getFeaturedProducts);
 router
   .route("/:id")
-  .get(isAuthenticatedUser, getProductById)
-  .put(isAuthenticatedUser, updateProductById)
-  .delete(isAuthenticatedUser, deleteProduct);
+  .get(getProductById)
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateProductById)
+  .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteProduct);
 
 module.exports = router;
