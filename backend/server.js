@@ -13,6 +13,7 @@ dotenv.config();
 //Routes
 const categories = require("./routes/categories");
 const products = require("./routes/products");
+const users = require("./routes/users");
 
 //Middlewares
 db();
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
 //Routes Initialization
 app.use("/api/v1/categories", categories);
 app.use("/api/v1/products", products);
+app.use("/api/v1/users", users);
 
 //Error middleware
 app.use(errorMiddleware);
