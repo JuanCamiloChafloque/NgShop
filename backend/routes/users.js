@@ -8,6 +8,7 @@ const {
   getAllUsers,
   getUserById,
   updateUserById,
+  deleteUser,
 } = require("../controllers/userController");
 
 // Auth Middlewares
@@ -22,6 +23,7 @@ router.route("/").get(isAuthenticatedUser, isAuthorizedRoles(), getAllUsers);
 router
   .route("/:id")
   .get(isAuthenticatedUser, getUserById)
-  .put(isAuthenticatedUser, isAuthorizedRoles(), updateUserById);
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateUserById)
+  .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteUser);
 
 module.exports = router;

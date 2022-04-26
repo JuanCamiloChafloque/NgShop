@@ -51,7 +51,7 @@ exports.updateCategoryById = catchAsyncErrors(async (req, res, next) => {
 
 exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  const category = Category.findById(id);
+  const category = await Category.findById(id);
   if (!category) {
     return next(
       new ErrorHandler("The category with id " + id + " does not exist", 404)

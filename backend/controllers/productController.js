@@ -63,7 +63,7 @@ exports.updateProductById = catchAsyncErrors(async (req, res, next) => {
 
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  const product = Product.findById(id);
+  const product = await Product.findById(id);
   if (!product) {
     return next(
       new ErrorHandler("The product with id " + id + " does not exist", 404)

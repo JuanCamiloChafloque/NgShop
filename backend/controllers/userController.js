@@ -73,3 +73,18 @@ exports.updateUserById = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({ success: true, user: newUser });
 });
+
+exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return next(
+      new ErrorHandler("The user with id " + id + " does not exist", 404)
+    );
+  }
+
+  await User.deleteOne({ _id: id });
+  res
+    .status(200)
+    .json({ success: true, message: "User deleted successfully." });
+});
