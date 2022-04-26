@@ -10,11 +10,17 @@ const {
   updateCategoryById,
 } = require("../controllers/categoryController");
 
-router.route("/").get(getAllCategories).post(createCategory);
+// Auth Middlewares
+const { isAuthenticatedUser } = require("../middleware/auth");
+
+router
+  .route("/")
+  .get(isAuthenticatedUser, getAllCategories)
+  .post(isAuthenticatedUser, createCategory);
 router
   .route("/:id")
-  .get(getCategoryById)
-  .put(updateCategoryById)
-  .delete(deleteCategory);
+  .get(isAuthenticatedUser, getCategoryById)
+  .put(isAuthenticatedUser, updateCategoryById)
+  .delete(isAuthenticatedUser, deleteCategory);
 
 module.exports = router;

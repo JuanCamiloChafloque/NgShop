@@ -10,9 +10,15 @@ const {
   updateUserById,
 } = require("../controllers/userController");
 
+// Auth Middlewares
+const { isAuthenticatedUser } = require("../middleware/auth");
+
 router.route("/register").post(register);
 router.route("/login").post(login);
-router.route("/").get(getAllUsers);
-router.route("/:id").get(getUserById).put(updateUserById);
+router.route("/").get(isAuthenticatedUser, getAllUsers);
+router
+  .route("/:id")
+  .get(isAuthenticatedUser, getUserById)
+  .put(isAuthenticatedUser, updateUserById);
 
 module.exports = router;

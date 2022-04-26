@@ -11,12 +11,19 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 
-router.route("/").get(getAllProducts).post(createProduct);
-router.route("/featured").get(getFeaturedProducts);
+// Auth Middlewares
+const { isAuthenticatedUser } = require("../middleware/auth");
+
+router
+  .route("/")
+  .get(isAuthenticatedUser, getAllProducts)
+  .post(isAuthenticatedUser, createProduct);
+
+router.route("/featured").get(isAuthenticatedUser, getFeaturedProducts);
 router
   .route("/:id")
-  .get(getProductById)
-  .put(updateProductById)
-  .delete(deleteProduct);
+  .get(isAuthenticatedUser, getProductById)
+  .put(isAuthenticatedUser, updateProductById)
+  .delete(isAuthenticatedUser, deleteProduct);
 
 module.exports = router;
