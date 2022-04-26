@@ -22,11 +22,11 @@ const seedDatabase = async () => {
     await Product.deleteMany({});
     await Product.insertMany(products);
 
-    await Order.deleteMany({});
-    await Order.insertMany(orders);
+    //await Order.deleteMany({});
+    //await Order.insertMany(orders);
 
-    await User.deleteMany({});
-    await User.insertMany(users);
+    //await User.deleteMany({});
+    //await User.insertMany(users);
 
     console.log("Database initialized!");
     process.exit(0);

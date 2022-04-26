@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const ProductSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Product name is required"],
   },
   description: {
     type: String,
-    required: true,
+    required: [true, "Product description is required"],
   },
   richDescription: {
     type: String,
@@ -34,16 +34,17 @@ const ProductSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: "category",
-    required: true,
+    required: [true, "Product category is required"],
   },
   countInStock: {
     type: Number,
-    required: true,
+    required: [true, "Product initial stock is required"],
     min: 0,
     max: 255,
   },
   rating: {
     type: Number,
+    default: 0,
   },
   isFeatured: {
     type: Boolean,

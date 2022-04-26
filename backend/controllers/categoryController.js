@@ -15,7 +15,6 @@ exports.createCategory = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllCategories = catchAsyncErrors(async (req, res, next) => {
   const categories = await Category.find();
-  console.log(categories);
   if (!categories) {
     return next(new ErrorHandler("There are no categories registered.", 404));
   }

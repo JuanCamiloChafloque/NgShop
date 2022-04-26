@@ -1,30 +1,36 @@
 [
   {
+    "_id": "5f15d467f3a046427a1c26e1",
     "name": "Mobile",
     "color": "#F0E4E1",
     "icon": "mobile"
   },
   {
+    "_id": "5f15d545f3a046427a1c26e2",
     "name": "Beauty",
     "color": "#F0E8DE",
     "icon": "palette"
   },
   {
+    "_id": "5f15d54cf3a046427a1c26e3",
     "name": "Computers",
     "color": "#E1F0E7",
     "icon": "desktop"
   },
   {
+    "_id": "5f15d5b2cb4a6642bddc0fe7",
     "name": "House",
     "color": "#E2E1F0",
     "icon": "home"
   },
   {
+    "_id": "5f9d7e938680aa1d979d7e19",
     "name": "Games",
     "color": "#ffb8b8",
     "icon": "sun"
   },
   {
+    "_id": "608fe08365074604f45ce544",
     "name": "Cameras",
     "icon": "camera",
     "color": "#ede4da"
