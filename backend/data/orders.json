@@ -1,17 +1,16 @@
 [
   {
-    "_id": {
-      "$oid": "6072d4e83abd910cb7358aad"
-    },
+    "_id": "6072d4e83abd910cb7358aad",
     "orderItems": [
       {
-        "$oid": "6072d4e83abd910cb7358aab"
+        "quantity": 3,
+        "product": "5f15d8852a025143f9593a7c"
       },
       {
-        "$oid": "6072d4e83abd910cb7358aac"
+        "quantity": 1,
+        "product": "5f15d9b3e520d44421ed8e9d"
       }
     ],
-    "status": "1",
     "shippingAddress1": "Flowers Street",
     "shippingAddress2": "13",
     "city": "Prague",
@@ -19,27 +18,20 @@
     "country": "Czech Republic",
     "phone": "688874451",
     "totalPrice": 1240.9,
-    "user": {
-      "$oid": "5f1687e1be2e99a158c08504"
-    },
-    "dateOrdered": {
-      "$date": "2021-04-11T10:52:24.756Z"
-    },
-    "__v": 0
+    "user": "6268359aa7ec003a1862541a"
   },
   {
-    "_id": {
-      "$oid": "609d7eea3373711346c5e953"
-    },
+    "_id": "609d7eea3373711346c5e953",
     "orderItems": [
       {
-        "$oid": "609d7ee93373711346c5e951"
+        "quantity": 7,
+        "product": "5f68fd316170530b7e0afc54"
       },
       {
-        "$oid": "609d7ee93373711346c5e952"
+        "quantity": 4,
+        "product": "5f15da13e520d44421ed8e9e"
       }
     ],
-    "status": "0",
     "shippingAddress1": "Street 1",
     "shippingAddress2": "Apartment1",
     "city": "City",
@@ -47,27 +39,20 @@
     "country": "BR",
     "phone": "(123) 456-7899",
     "totalPrice": 4161,
-    "user": {
-      "$oid": "609d65943373711346c5e950"
-    },
-    "dateOrdered": {
-      "$date": "2021-05-13T19:32:58.030Z"
-    },
-    "__v": 0
+    "user": "6268359aa7ec003a1862541a"
   },
   {
-    "_id": {
-      "$oid": "609d874d3373711346c5e956"
-    },
+    "_id": "609d874d3373711346c5e956",
     "orderItems": [
       {
-        "$oid": "609d874c3373711346c5e954"
+        "quantity": 7,
+        "product": "5f68fd316170530b7e0afc54"
       },
       {
-        "$oid": "609d874c3373711346c5e955"
+        "quantity": 4,
+        "product": "5f15da13e520d44421ed8e9e"
       }
     ],
-    "status": "0",
     "shippingAddress1": "street2",
     "shippingAddress2": "aprtment2",
     "city": "city",
@@ -75,27 +60,20 @@
     "country": "CX",
     "phone": "(123) 456-7777",
     "totalPrice": 4161,
-    "user": {
-      "$oid": "609d65943373711346c5e950"
-    },
-    "dateOrdered": {
-      "$date": "2021-05-13T20:08:45.299Z"
-    },
-    "__v": 0
+    "user": "6268359aa7ec003a1862541a"
   },
   {
-    "_id": {
-      "$oid": "609d898d3373711346c5e959"
-    },
+    "_id": "609d898d3373711346c5e959",
     "orderItems": [
       {
-        "$oid": "609d898d3373711346c5e957"
+        "quantity": 7,
+        "product": "5f68fd316170530b7e0afc54"
       },
       {
-        "$oid": "609d898d3373711346c5e958"
+        "quantity": 4,
+        "product": "5f15da13e520d44421ed8e9e"
       }
     ],
-    "status": "0",
     "shippingAddress1": "Street 1",
     "shippingAddress2": "Apartment 1",
     "city": "City 1",
@@ -103,27 +81,20 @@
     "country": "AT",
     "phone": "(123) 456-7888",
     "totalPrice": 4161,
-    "user": {
-      "$oid": "609d65943373711346c5e950"
-    },
-    "dateOrdered": {
-      "$date": "2021-05-13T20:18:21.264Z"
-    },
-    "__v": 0
+    "user": "6268359aa7ec003a1862541a"
   },
   {
-    "_id": {
-      "$oid": "609d8a0c3373711346c5e95c"
-    },
+    "_id": "609d8a0c3373711346c5e95c",
     "orderItems": [
       {
-        "$oid": "609d8a0c3373711346c5e95a"
+        "quantity": 1,
+        "product": "5f15da135420d44443ed8e9e"
       },
       {
-        "$oid": "609d8a0c3373711346c5e95b"
+        "quantity": 1,
+        "product": "5f15da135420d44456ed8e9e"
       }
     ],
-    "status": "0",
     "shippingAddress1": "Street 1",
     "shippingAddress2": "Apartment 1",
     "city": "City",
@@ -131,12 +102,6 @@
     "country": "AT",
     "phone": "(123) 456-7777",
     "totalPrice": 1260,
-    "user": {
-      "$oid": "609d65943373711346c5e950"
-    },
-    "dateOrdered": {
-      "$date": "2021-05-13T20:20:28.582Z"
-    },
-    "__v": 0
+    "user": "6268359aa7ec003a1862541a"
   }
 ]
