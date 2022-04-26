@@ -11,6 +11,7 @@ const bodyParser = require("body-parser");
 dotenv.config();
 
 //Routes
+const categories = require("./routes/categories");
 
 //Middlewares
 db();
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 });
 
 //Routes Initialization
+app.use("/api/v1/categories", categories);
 
 //Error middleware
 app.use(errorMiddleware);
