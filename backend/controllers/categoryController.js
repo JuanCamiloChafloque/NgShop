@@ -13,21 +13,6 @@ exports.createCategory = catchAsyncErrors(async (req, res, next) => {
   res.status(201).json({ success: true, category: newCategory });
 });
 
-exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
-  const { id } = req.params;
-  const category = Category.findById(id);
-  if (!category) {
-    return next(
-      new ErrorHandler("The category with id " + id + " does not exist", 404)
-    );
-  }
-
-  await Category.deleteOne({ _id: id });
-  res
-    .status(200)
-    .json({ success: true, message: "Category deleted successfully." });
-});
-
 exports.getAllCategories = catchAsyncErrors(async (req, res, next) => {
   const categories = await Category.find();
   console.log(categories);
@@ -46,4 +31,36 @@ exports.getCategoryById = catchAsyncErrors(async (req, res, next) => {
     );
   }
   res.status(200).json({ success: true, category: category });
+});
+
+exports.updateCategoryById = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const category = await Category.findById(id);
+  if (!category) {
+    return next(
+      new ErrorHandler("The category with id " + id + " does not exist", 404)
+    );
+  }
+
+  const newCategory = await Category.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({ success: true, category: newCategory });
+});
+
+exports.deleteCategory = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const category = Category.findById(id);
+  if (!category) {
+    return next(
+      new ErrorHandler("The category with id " + id + " does not exist", 404)
+    );
+  }
+
+  await Category.deleteOne({ _id: id });
+  res
+    .status(200)
+    .json({ success: true, message: "Category deleted successfully." });
 });
