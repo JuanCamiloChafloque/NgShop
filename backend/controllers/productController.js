@@ -3,7 +3,27 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-  const newProduct = await Product.create(req.body);
+  let name = "";
+
+  if (req.file) {
+    console.log(req.file);
+    name = req.file.filename;
+  }
+
+  const product = {
+    name: req.body.name,
+    description: req.body.description,
+    richDescription: req.body.richDescription,
+    image: req.protocol + "://" + req.get("host") + "/public/uploads/" + name,
+    brand: req.body.brand,
+    price: req.body.price,
+    category: req.body.category,
+    countInStock: req.body.countInStock,
+    rating: req.body.rating,
+    isFeatured: req.body.isFeatured,
+  };
+
+  const newProduct = await Product.create(product);
   res.status(201).json({ success: true, product: newProduct });
 });
 
