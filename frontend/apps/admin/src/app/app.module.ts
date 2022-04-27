@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,7 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesService } from '@frontend/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 const routes: Routes = [
   {
@@ -62,10 +63,11 @@ const routes: Routes = [
     TableModule,
     ToastModule,
     InputTextModule,
+    ConfirmDialogModule,
     ToolbarModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService, MessageService],
+  providers: [CategoriesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
