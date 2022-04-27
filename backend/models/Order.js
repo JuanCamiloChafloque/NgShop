@@ -48,7 +48,7 @@ const OrderSchema = new Schema({
     default: "Pending",
   },
   totalPrice: {
-    type: String,
+    type: Number,
   },
   dateOrdered: {
     type: Date,

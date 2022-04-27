@@ -4,7 +4,16 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 exports.createOrder = catchAsyncErrors(async (req, res, next) => {
   const newOrder = await Order.create(req.body);
-  res.status(201).json({ success: true, order: newOrder });
+  const order = await Order.findById(newOrder._id).populate(
+    "orderItems.product"
+  );
+  const totalPrice = order.orderItems.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0
+  );
+  order.totalPrice = totalPrice;
+  await order.save();
+  res.status(201).json({ success: true, order: order });
 });
 
 exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
@@ -15,6 +24,18 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("There are no orders registered.", 404));
   }
   res.status(200).json({ success: true, count: orders.length, orders: orders });
+});
+
+exports.getTotalSales = catchAsyncErrors(async (req, res, next) => {
+  const orders = await Order.find({});
+  console.log(orders);
+  if (!orders) {
+    return next(new ErrorHandler("There are no orders registered.", 404));
+  }
+
+  const totalSales = orders.reduce((acc, item) => acc + item.totalPrice, 0);
+
+  res.status(200).json({ success: true, totalSales: totalSales });
 });
 
 exports.getOrderById = catchAsyncErrors(async (req, res, next) => {
@@ -29,6 +50,17 @@ exports.getOrderById = catchAsyncErrors(async (req, res, next) => {
     );
   }
   res.status(200).json({ success: true, order: order });
+});
+
+exports.getUserOrders = catchAsyncErrors(async (req, res, next) => {
+  const orders = await Order.find({ user: req.user._id }).populate([
+    "orderItems.product",
+    "user",
+  ]);
+  if (!orders) {
+    return next(new ErrorHandler("User does not have any orders placed", 404));
+  }
+  res.status(200).json({ success: true, orders: orders });
 });
 
 exports.updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
