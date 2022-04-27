@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesService } from '@frontend/products';
 import { CategoriesFormComponent } from './categories/categories-form/categories-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 const routes: Routes = [
   {
@@ -50,17 +53,19 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     CardModule,
     ButtonModule,
     TableModule,
+    ToastModule,
     InputTextModule,
     ToolbarModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
