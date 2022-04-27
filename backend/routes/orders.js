@@ -6,6 +6,8 @@ const {
   createOrder,
   getOrderById,
   getAllOrders,
+  updateOrderStatus,
+  deleteOrder,
 } = require("../controllers/orderController");
 
 // Auth Middlewares
@@ -19,6 +21,10 @@ router
   .get(isAuthenticatedUser, isAuthorizedRoles(), getAllOrders)
   .post(isAuthenticatedUser, createOrder);
 
-router.route("/:id").get(isAuthenticatedUser, getOrderById);
+router
+  .route("/:id")
+  .get(isAuthenticatedUser, getOrderById)
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateOrderStatus)
+  .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteOrder);
 
 module.exports = router;

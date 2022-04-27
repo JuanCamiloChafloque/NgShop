@@ -30,3 +30,33 @@ exports.getOrderById = catchAsyncErrors(async (req, res, next) => {
   }
   res.status(200).json({ success: true, order: order });
 });
+
+exports.updateOrderStatus = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const order = await Order.findById(id);
+  if (!order) {
+    return next(
+      new ErrorHandler("The order with id " + id + " does not exist", 404)
+    );
+  }
+
+  order.status = req.body.status;
+  const newOrder = await order.save();
+
+  res.status(200).json({ success: true, order: newOrder });
+});
+
+exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const order = await Order.findById(id);
+  if (!order) {
+    return next(
+      new ErrorHandler("The order with id " + id + " does not exist", 404)
+    );
+  }
+
+  await Order.deleteOne({ _id: id });
+  res
+    .status(200)
+    .json({ success: true, message: "Order deleted successfully." });
+});
