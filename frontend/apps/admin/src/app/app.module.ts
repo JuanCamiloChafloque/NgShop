@@ -9,6 +9,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ColorPickerModule } from 'primeng/colorpicker';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -68,6 +69,7 @@ const routes: Routes = [
     ToastModule,
     InputTextModule,
     ConfirmDialogModule,
+    ColorPickerModule,
     ToolbarModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
