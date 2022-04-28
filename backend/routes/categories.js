@@ -23,7 +23,7 @@ router
 router
   .route("/:id")
   .get(getCategoryById)
-  .put(isAuthenticatedUser, isAuthorizedRoles(), updateCategoryById)
+  .put(updateCategoryById)
   .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteCategory);
 
 module.exports = router;
