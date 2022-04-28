@@ -21,6 +21,11 @@
           [value]="products"
           responsiveLayout="scroll"
           styleClass="p-datatable-gridlines"
+          [paginator]="true"
+          [rows]="4"
+          [showCurrentPageReport]="true"
+          responsiveLayout="scroll"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         >
           <ng-template pTemplate="header">
             <tr>

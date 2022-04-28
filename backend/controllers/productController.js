@@ -72,6 +72,15 @@ exports.updateProductById = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("The product with id " + id + " does not exist", 404)
     );
   }
+
+  let name = "";
+
+  if (req.file) {
+    name = req.file.filename;
+    req.body.image =
+      req.protocol + "://" + req.get("host") + "/public/uploads/" + name;
+  }
+
   const newProduct = await Product.findByIdAndUpdate(id, req.body, {
     new: true,
     runValidators: true,

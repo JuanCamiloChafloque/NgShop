@@ -17,7 +17,10 @@ const {
   isAuthorizedRoles,
 } = require("../middleware/auth");
 
-router.route("/").get(getAllProducts).post(createProduct);
+router
+  .route("/")
+  .get(getAllProducts)
+  .post(isAuthenticatedUser, isAuthorizedRoles(), createProduct);
 
 router.route("/featured").get(getFeaturedProducts);
 router

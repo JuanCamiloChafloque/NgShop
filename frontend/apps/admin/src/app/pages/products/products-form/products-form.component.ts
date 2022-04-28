@@ -22,6 +22,7 @@ export class ProductsFormComponent implements OnInit {
   public isSubmitted = false;
   public editMode = false;
   public id = '';
+  public file!: any;
   public imageDisplay!: string | ArrayBuffer | null;
 
   constructor(
@@ -61,9 +62,25 @@ export class ProductsFormComponent implements OnInit {
           this.id = params.id;
           this.productsService.getProductById(this.id).subscribe({
             next: (result) => {
-              this.form.controls['name'].setValue(result.category.name);
-              this.form.controls['icon'].setValue(result.category.icon);
-              this.form.controls['color'].setValue(result.category.color);
+              this.form.controls['name'].setValue(result.product.name);
+              this.form.controls['brand'].setValue(result.product.brand);
+              this.form.controls['price'].setValue(result.product.price);
+              this.form.controls['countInStock'].setValue(
+                result.product.countInStock
+              );
+              this.form.controls['category'].setValue(
+                result.product.category._id
+              );
+              this.form.controls['description'].setValue(
+                result.product.description
+              );
+              this.form.controls['isFeatured'].setValue(
+                result.product.isFeatured
+              );
+              this.form.controls['richDescription'].setValue(
+                result.product.richDescription
+              );
+              this.imageDisplay = result.product.image;
             },
           });
         }
@@ -89,7 +106,9 @@ export class ProductsFormComponent implements OnInit {
       this.form.controls['richDescription'].value
     );
     product.append('isFeatured', this.form.controls['isFeatured'].value);
-    product.append('image', this.form.controls['image'].value);
+    if (this.file) {
+      product.append('image', this.form.controls['image'].value);
+    }
 
     if (this.editMode) {
       this.productsService.updateProduct(this.id, product).subscribe({
@@ -139,15 +158,15 @@ export class ProductsFormComponent implements OnInit {
   }
 
   onImageUpload(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.form.patchValue({ image: file });
+    this.file = event.target.files[0];
+    if (this.file) {
+      this.form.patchValue({ image: this.file });
       this.form.get('image')?.updateValueAndValidity();
       const fileReader = new FileReader();
       fileReader.onload = () => {
         this.imageDisplay = fileReader.result;
       };
-      fileReader.readAsDataURL(file);
+      fileReader.readAsDataURL(this.file);
     }
   }
 }
