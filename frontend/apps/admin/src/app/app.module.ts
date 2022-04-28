@@ -7,6 +7,11 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DropdownModule } from 'primeng/dropdown';
+import { EditorModule } from 'primeng/editor';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -84,6 +89,11 @@ const routes: Routes = [
     TableModule,
     ToastModule,
     InputTextModule,
+    InputNumberModule,
+    InputTextareaModule,
+    InputSwitchModule,
+    DropdownModule,
+    EditorModule,
     ConfirmDialogModule,
     ColorPickerModule,
     ToolbarModule,

@@ -6,7 +6,6 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let name = "";
 
   if (req.file) {
-    console.log(req.file);
     name = req.file.filename;
   }
 

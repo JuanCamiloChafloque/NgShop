@@ -17,11 +17,11 @@ export class ProductsService {
     return this.http.get('http://localhost:5000/api/v1/products/' + id);
   }
 
-  addProduct(product: Product): Observable<any> {
+  addProduct(product: FormData): Observable<any> {
     return this.http.post('http://localhost:5000/api/v1/products', product);
   }
 
-  updateProduct(id: string, product: Product): Observable<any> {
+  updateProduct(id: string, product: FormData): Observable<any> {
     return this.http.put(
       'http://localhost:5000/api/v1/products/' + id,
       product
