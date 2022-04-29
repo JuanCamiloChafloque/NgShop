@@ -40,10 +40,17 @@ exports.getTotalSales = catchAsyncErrors(async (req, res, next) => {
 
 exports.getOrderById = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  const order = await Order.findById(id).populate([
-    "orderItems.product",
-    "user",
-  ]);
+  const order = await Order.findById(id)
+    .populate("user")
+    .populate({
+      path: "orderItems",
+      populate: {
+        path: "product",
+        populate: {
+          path: "category",
+        },
+      },
+    });
   if (!order) {
     return next(
       new ErrorHandler("The order with id " + id + " does not exist", 404)

@@ -18,7 +18,10 @@ const {
   isAuthorizedRoles,
 } = require("../middleware/auth");
 
-router.route("/").get(getAllOrders).post(isAuthenticatedUser, createOrder);
+router
+  .route("/")
+  .get(isAuthenticatedUser, isAuthorizedRoles(), getAllOrders)
+  .post(isAuthenticatedUser, createOrder);
 
 router
   .route("/sales")
@@ -28,8 +31,8 @@ router.route("/order/me").get(isAuthenticatedUser, getUserOrders);
 
 router
   .route("/:id")
-  .get(getOrderById)
-  .put(updateOrderStatus)
-  .delete(deleteOrder);
+  .get(isAuthenticatedUser, isAuthorizedRoles(), getOrderById)
+  .put(isAuthenticatedUser, isAuthorizedRoles(), updateOrderStatus)
+  .delete(isAuthenticatedUser, isAuthorizedRoles(), deleteOrder);
 
 module.exports = router;

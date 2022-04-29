@@ -17,7 +17,9 @@ export class OrdersService {
   }
 
   updateStatus(id: string, status: string): Observable<any> {
-    return this.http.put('http://localhost:5000/api/v1/orders/' + id, status);
+    return this.http.put('http://localhost:5000/api/v1/orders/' + id, {
+      status,
+    });
   }
 
   deleteOrder(id: string): Observable<any> {

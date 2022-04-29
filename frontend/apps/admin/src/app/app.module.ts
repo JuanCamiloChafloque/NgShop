@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { TagModule } from 'primeng/tag';
+import { FieldsetModule } from 'primeng/fieldset';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -126,6 +127,7 @@ const routes: Routes = [
     ConfirmDialogModule,
     ColorPickerModule,
     TagModule,
+    FieldsetModule,
     ToolbarModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
