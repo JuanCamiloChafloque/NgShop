@@ -18,10 +18,10 @@ export class UsersService {
   }
 
   addUser(user: User): Observable<any> {
-    return this.http.post('http://localhost:5000/api/v1/users', user);
+    return this.http.post('http://localhost:5000/api/v1/users/register', user);
   }
 
-  updateProduct(id: string, user: User): Observable<any> {
+  updateUser(id: string, user: User): Observable<any> {
     return this.http.put('http://localhost:5000/api/v1/users/' + id, user);
   }
 

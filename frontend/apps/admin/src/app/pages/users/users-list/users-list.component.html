@@ -30,6 +30,7 @@
               <th>Email</th>
               <th>Phone</th>
               <th>Is Admin</th>
+              <th>Country</th>
               <th></th>
             </tr>
           </ng-template>
@@ -38,7 +39,23 @@
               <td>{{ user.name }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.phone }}</td>
-              <td>{{ user.isAdmin }}</td>
+              <td>
+                <p-tag
+                  *ngIf="user.isAdmin"
+                  styleClass="mr-2"
+                  icon="pi pi-check"
+                  severity="success"
+                  [rounded]="true"
+                ></p-tag>
+                <p-tag
+                  *ngIf="!user.isAdmin"
+                  styleClass="mr-2"
+                  icon="pi pi-times"
+                  severity="danger"
+                  [rounded]="true"
+                ></p-tag>
+              </td>
+              <td>{{ user.country }}</td>
               <td>
                 <p-button
                   icon="pi pi-trash"
