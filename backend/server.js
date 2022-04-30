@@ -55,8 +55,8 @@ app.use(
 );
 
 //JSON Parser middleware
-app.use(cors());
-app.options("*", cors());
+//app.use(cors({ credentials: true, origin: true }));
+//app.options("*", cors({ credentials: true }));
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,7 +65,8 @@ app.use(cookieParser());
 //CORS
 app.use((req, res, next) => {
   res.header("Content-Type: application/json");
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Credentials", true);
   res.header(
     "Access-Control-Allow-Headers",
     "Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Access-Control-Allow-Request-Method"

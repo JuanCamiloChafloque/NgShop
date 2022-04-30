@@ -9,6 +9,7 @@ const {
   getUserById,
   updateUserById,
   deleteUser,
+  logout,
 } = require("../controllers/userController");
 
 // Auth Middlewares
@@ -19,6 +20,7 @@ const {
 
 router.route("/register").post(register);
 router.route("/login").post(login);
+router.route("/logout").get(logout);
 router.route("/").get(isAuthenticatedUser, isAuthorizedRoles(), getAllUsers);
 router
   .route("/:id")
