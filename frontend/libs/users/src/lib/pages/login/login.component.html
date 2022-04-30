@@ -1,0 +1,61 @@
+<div class="login-register">
+  <div class="login-register-panel">
+    <div class="grid">
+      <div class="col-6">
+        <img src="assets/images/login-photo.png" alt="" />
+      </div>
+      <div class="col-6 p-5">
+        <h3>Welcome!</h3>
+        <h2>Login Page</h2>
+        <form [formGroup]="loginFormGroup">
+          <div class="p-fluid grid mt-6">
+            <div class="field col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-user"></i
+                ></span>
+                <input
+                  type="text"
+                  formControlName="email"
+                  pInputText
+                  placeholder="Email"
+                />
+              </div>
+              <small
+                *ngIf="loginFormGroup.controls['email'].invalid && isSubmitted"
+                class="p-error"
+                >Email is required</small
+              >
+            </div>
+            <div class="field col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"
+                  ><i class="pi pi-lock"></i
+                ></span>
+                <input
+                  type="password"
+                  formControlName="password"
+                  pInputText
+                  placeholder="Password"
+                />
+              </div>
+              <small
+                *ngIf="
+                  loginFormGroup.controls['password'].invalid && isSubmitted
+                "
+                class="p-error"
+                >Password is required</small
+              >
+            </div>
+            <div class="col-12">
+              <small *ngIf="error" class="p-error">{{ errorMessage }}</small>
+            </div>
+            <div class="field col-12">
+              <p-button label="Submit" (onClick)="onSubmit()"></p-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

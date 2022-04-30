@@ -10,25 +10,34 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<any> {
-    return this.http.get('http://localhost:5000/api/v1/categories');
+    return this.http.get('http://localhost:5000/api/v1/categories', {
+      withCredentials: true,
+    });
   }
 
   getCategoryById(id: string): Observable<any> {
-    return this.http.get('http://localhost:5000/api/v1/categories/' + id);
+    return this.http.get('http://localhost:5000/api/v1/categories/' + id, {
+      withCredentials: true,
+    });
   }
 
   addCategory(category: Category): Observable<any> {
-    return this.http.post('http://localhost:5000/api/v1/categories', category);
+    return this.http.post('http://localhost:5000/api/v1/categories', category, {
+      withCredentials: true,
+    });
   }
 
   updateCategory(id: string, category: Category): Observable<any> {
     return this.http.put(
       'http://localhost:5000/api/v1/categories/' + id,
-      category
+      category,
+      { withCredentials: true }
     );
   }
 
   deleteCategory(id: string): Observable<any> {
-    return this.http.delete('http://localhost:5000/api/v1/categories/' + id);
+    return this.http.delete('http://localhost:5000/api/v1/categories/' + id, {
+      withCredentials: true,
+    });
   }
 }
