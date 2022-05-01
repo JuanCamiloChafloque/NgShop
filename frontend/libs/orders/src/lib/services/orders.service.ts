@@ -14,6 +14,12 @@ export class OrdersService {
     });
   }
 
+  getTotalSales(): Observable<any> {
+    return this.http.get('http://localhost:5000/api/v1/orders/sales', {
+      withCredentials: true,
+    });
+  }
+
   getOrderById(id: string): Observable<any> {
     return this.http.get('http://localhost:5000/api/v1/orders/' + id, {
       withCredentials: true,

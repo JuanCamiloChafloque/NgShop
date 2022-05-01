@@ -44,7 +44,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: DashboardComponent,
       },
       {
