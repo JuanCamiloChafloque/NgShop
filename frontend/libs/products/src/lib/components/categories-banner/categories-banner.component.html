@@ -4,7 +4,7 @@
     <div class="col-2" *ngFor="let item of categories">
       <div
         class="category"
-        [routerLink]="'/products/category/' + item._id"
+        [routerLink]="'/category/' + item._id"
         [ngStyle]="{ backgroundColor: item.color }"
       >
         <div class="category-icon">

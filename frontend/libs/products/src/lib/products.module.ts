@@ -15,6 +15,10 @@ export const productsRoutes: Route[] = [
     path: 'products',
     component: ProductsListComponent,
   },
+  {
+    path: 'category/:id',
+    component: ProductsListComponent,
+  },
 ];
 
 @NgModule({
