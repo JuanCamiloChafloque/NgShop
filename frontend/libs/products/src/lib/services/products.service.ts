@@ -8,10 +8,20 @@ import { Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<any> {
-    return this.http.get('http://localhost:5000/api/v1/products', {
-      withCredentials: true,
-    });
+  getProducts(filter?: any): Observable<any> {
+    if (!filter) {
+      return this.http.get('http://localhost:5000/api/v1/products', {
+        withCredentials: true,
+      });
+    } else {
+      const strFilter = filter.join(',');
+      return this.http.get(
+        'http://localhost:5000/api/v1/products?categories=' + strFilter,
+        {
+          withCredentials: true,
+        }
+      );
+    }
   }
 
   getFeaturedProducts(count: number): Observable<any> {
