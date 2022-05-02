@@ -14,6 +14,15 @@ export class ProductsService {
     });
   }
 
+  getFeaturedProducts(count: number): Observable<any> {
+    return this.http.get(
+      'http://localhost:5000/api/v1/products/featured?count=' + count,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
   getProductById(id: string): Observable<any> {
     return this.http.get('http://localhost:5000/api/v1/products/' + id, {
       withCredentials: true,
