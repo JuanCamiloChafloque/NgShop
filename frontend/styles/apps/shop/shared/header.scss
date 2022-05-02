@@ -1,0 +1,35 @@
+header {
+  .logo {
+    img {
+      width: 160px;
+    }
+  }
+
+  .nav {
+    padding-top: 22px;
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-right: 15px;
+
+      a {
+        color: var(--surface-500);
+        &:hover {
+          cursor: pointer;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .tools {
+    padding-top: 30px;
+    .pi {
+      margin-right: 10px;
+    }
+  }
+
+  .search {
+    padding-top: 22px;
+  }
+}

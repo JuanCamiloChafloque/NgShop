@@ -11,6 +11,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { UiModule } from '@frontend/ui';
 
 import { AccordionModule } from 'primeng/accordion';
+import { NavComponent } from './shared/nav/nav.component';
+import { ProductsModule } from '@frontend/products';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -24,11 +26,13 @@ const routes: Routes = [
     ProductListComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    ProductsModule,
     UiModule,
     AccordionModule,
   ],
