@@ -23,7 +23,7 @@ export class CartService {
     return cart;
   }
 
-  setCartItem(cartItem: CartItem): Cart {
+  setCartItem(cartItem: CartItem, updateCartItem?: boolean): Cart {
     const cart: Cart = JSON.parse('' + localStorage.getItem('cart'));
     const itemExist = cart.items.find(
       (item) => item.productId === cartItem.productId
@@ -31,7 +31,11 @@ export class CartService {
     if (itemExist) {
       cart.items.map((item) => {
         if (item.productId === cartItem.productId) {
-          item.quantity = item.quantity + cartItem.quantity;
+          if (updateCartItem) {
+            item.quantity = cartItem.quantity;
+          } else {
+            item.quantity = item.quantity + cartItem.quantity;
+          }
         }
       });
     } else {
