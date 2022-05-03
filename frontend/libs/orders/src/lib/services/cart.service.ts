@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/Cart';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  constructor() {}
+  cart$: BehaviorSubject<Cart> = new BehaviorSubject(this.getCart());
 
   initCartLocalStorage() {
     const cart: Cart = JSON.parse('' + localStorage.getItem('cart'));
@@ -15,6 +16,11 @@ export class CartService {
       };
       localStorage.setItem('cart', JSON.stringify(initialCart));
     }
+  }
+
+  getCart(): Cart {
+    const cart: Cart = JSON.parse('' + localStorage.getItem('cart'));
+    return cart;
   }
 
   setCartItem(cartItem: CartItem): Cart {
@@ -32,6 +38,7 @@ export class CartService {
       cart.items.push(cartItem);
     }
     localStorage.setItem('cart', JSON.stringify(cart));
+    this.cart$.next(cart);
     return cart;
   }
 }

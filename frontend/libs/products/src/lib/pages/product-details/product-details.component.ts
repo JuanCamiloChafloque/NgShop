@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem, CartService } from '@frontend/orders';
 import { Product } from '../../models/Product';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,10 +11,11 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductDetailsComponent implements OnInit {
   public product!: Product;
-  public quantity!: number;
+  public quantity = 1;
 
   constructor(
     private productsService: ProductsService,
+    private cartService: CartService,
     private route: ActivatedRoute
   ) {}
 
@@ -36,6 +38,11 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addProductToCart() {
-    console.log('cart');
+    const cartItem: CartItem = {
+      productId: '' + this.product._id,
+      quantity: this.quantity,
+    };
+
+    this.cartService.setCartItem(cartItem);
   }
 }
