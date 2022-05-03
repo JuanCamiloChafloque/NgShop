@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartItem, CartService } from '@frontend/orders';
 import { Product } from '../../models/Product';
 
 @Component({
@@ -9,7 +10,15 @@ import { Product } from '../../models/Product';
 export class ProductItemComponent implements OnInit {
   @Input() product!: Product;
 
-  constructor() {}
+  constructor(private cartsService: CartService) {}
 
   ngOnInit(): void {}
+
+  addProductToCart() {
+    const cartItem: CartItem = {
+      productId: '' + this.product._id,
+      quantity: 1,
+    };
+    this.cartsService.setCartItem(cartItem);
+  }
 }

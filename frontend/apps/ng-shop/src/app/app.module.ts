@@ -13,6 +13,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@frontend/products';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@frontend/orders';
 
 const routes: Routes = [{ path: '', component: HomePageComponent }];
 
@@ -32,6 +33,7 @@ const routes: Routes = [{ path: '', component: HomePageComponent }];
     ProductsModule,
     UiModule,
     AccordionModule,
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
