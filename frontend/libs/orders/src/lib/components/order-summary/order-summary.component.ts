@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { OrdersService } from '../../services/orders.service';
 
@@ -9,11 +10,17 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class OrderSummaryComponent implements OnInit {
   public totalPrice!: number;
+  public isCheckout = false;
 
   constructor(
     private cartService: CartService,
-    private ordersService: OrdersService
-  ) {}
+    private ordersService: OrdersService,
+    private router: Router
+  ) {
+    this.router.url.includes('checkout')
+      ? (this.isCheckout = true)
+      : (this.isCheckout = false);
+  }
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe({
