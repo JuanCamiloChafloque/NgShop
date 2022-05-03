@@ -9,6 +9,9 @@ import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 export const productsRoutes: Route[] = [
   {
@@ -19,6 +22,10 @@ export const productsRoutes: Route[] = [
     path: 'category/:id',
     component: ProductsListComponent,
   },
+  {
+    path: 'products/:id',
+    component: ProductDetailsComponent,
+  },
 ];
 
 @NgModule({
@@ -28,6 +35,8 @@ export const productsRoutes: Route[] = [
     ButtonModule,
     CheckboxModule,
     FormsModule,
+    RatingModule,
+    InputNumberModule,
   ],
   declarations: [
     ProductSearchComponent,
@@ -35,6 +44,7 @@ export const productsRoutes: Route[] = [
     ProductItemComponent,
     FeaturedProductsComponent,
     ProductsListComponent,
+    ProductDetailsComponent,
   ],
   exports: [
     ProductSearchComponent,

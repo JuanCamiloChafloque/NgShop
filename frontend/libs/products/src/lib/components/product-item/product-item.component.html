@@ -1,6 +1,12 @@
 <div class="product-item">
   <div class="product-item-wrapper">
-    <img [src]="product.image" class="image" [alt]="product.name" />
+    <img
+      [routerLink]="['/products/' + product._id]"
+      routerLinkActive="router-link-active"
+      [src]="product.image"
+      class="image"
+      [alt]="product.name"
+    />
     <h4 class="name">{{ product.name }}</h4>
     <h5 class="price">{{ product.price | currency }}</h5>
     <p-button
