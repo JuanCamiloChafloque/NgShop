@@ -11,6 +11,7 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class CartPageComponent implements OnInit {
   public cartItemsDetail: CartItemDetails[] = [];
+  public cartCount = 0;
 
   constructor(
     private router: Router,
@@ -25,6 +26,8 @@ export class CartPageComponent implements OnInit {
   getCartDetails() {
     this.cartService.cart$.subscribe({
       next: (cart) => {
+        this.cartItemsDetail = [];
+        this.cartCount = cart?.items.length ?? 0;
         cart.items.forEach((item) => {
           this.ordersService.getProductById(item.productId).subscribe({
             next: (result) => {
@@ -43,5 +46,7 @@ export class CartPageComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
-  deleteCartItem() {}
+  deleteCartItem(id: string) {
+    this.cartService.deleteCartItem(id);
+  }
 }
