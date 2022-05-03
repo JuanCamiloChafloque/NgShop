@@ -1,1 +1,14 @@
-<p>slider works!</p>
+<div class="gallery" *ngIf="hasImages">
+  <div class="main-image">
+    <img [src]="selectedImage" alt="" />
+  </div>
+  <div class="images">
+    <ul>
+      <li
+        *ngFor="let item of images"
+        [ngStyle]="{ 'background-image': 'url(' + item + ')' }"
+        (click)="changeSelectedImage(item)"
+      ></li>
+    </ul>
+  </div>
+</div>

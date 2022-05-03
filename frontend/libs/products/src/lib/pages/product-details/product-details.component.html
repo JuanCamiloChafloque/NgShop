@@ -1,6 +1,8 @@
 <div class="product-page" *ngIf="product">
   <div class="grid">
-    <div class="col-6"></div>
+    <div class="col-6">
+      <frontend-slider [images]="product.images!"></frontend-slider>
+    </div>
     <div class="col-6 product">
       <h2 class="product-name">{{ product.name }}</h2>
       <p class="product-desc">{{ product.description }}</p>

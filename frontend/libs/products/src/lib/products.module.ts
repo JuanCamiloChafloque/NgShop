@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { UiModule } from '@frontend/ui';
 
 export const productsRoutes: Route[] = [
   {
@@ -37,6 +38,7 @@ export const productsRoutes: Route[] = [
     FormsModule,
     RatingModule,
     InputNumberModule,
+    UiModule,
   ],
   declarations: [
     ProductSearchComponent,
