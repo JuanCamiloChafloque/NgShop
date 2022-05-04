@@ -2,7 +2,7 @@ import { Product } from '@frontend/products';
 import { User } from '@frontend/users';
 
 export class Order {
-  user?: User;
+  user?: any;
   orderItems?: [{ product: Product; quantity: number }];
   shippingAddress1?: string;
   shippingAddress2?: string;

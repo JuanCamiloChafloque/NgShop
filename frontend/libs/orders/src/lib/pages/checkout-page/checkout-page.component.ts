@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Order } from '../../models/Order';
 import * as countriesLib from 'i18n-iso-countries';
+import { User } from '@frontend/users';
+import { CartService } from '../../services/cart.service';
+import { Cart } from '../../models/Cart';
+import { OrdersService } from '../../services/orders.service';
 
 declare const require: any;
 
@@ -14,15 +18,21 @@ declare const require: any;
 export class CheckoutPageComponent implements OnInit {
   public form!: FormGroup;
   public isSubmitted = false;
-  public orderItems: Order[] = [];
-  public userId!: string;
+  public orderItems: any = [];
+  public user!: User;
   public countries!: any;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private cartService: CartService,
+    private ordersService: OrdersService
+  ) {}
 
   ngOnInit(): void {
     this.initCheckoutForm();
     this.getCountries();
+    this.user = JSON.parse('' + localStorage.getItem('user'));
   }
 
   initCheckoutForm() {
@@ -50,6 +60,16 @@ export class CheckoutPageComponent implements OnInit {
     });
   }
 
+  getCartItems() {
+    const cart: Cart = this.cartService.getCart();
+    this.orderItems = cart.items.map((item) => {
+      return {
+        product: item.productId,
+        quantity: item.quantity,
+      };
+    });
+  }
+
   backToCart() {
     this.router.navigate(['/cart']);
   }
@@ -58,6 +78,24 @@ export class CheckoutPageComponent implements OnInit {
     this.isSubmitted = true;
     if (this.form.invalid) {
       return;
+    } else {
+      this.getCartItems();
+      const order: Order = {
+        user: this.user._id,
+        orderItems: this.orderItems,
+        shippingAddress1: this.form.controls['street'].value,
+        shippingAddress2: this.form.controls['apartment'].value,
+        city: this.form.controls['city'].value,
+        zip: this.form.controls['zip'].value,
+        country: this.form.controls['country'].value,
+        phone: this.form.controls['phone'].value,
+      };
+
+      this.ordersService.createOrder(order).subscribe({
+        next: () => {
+          this.router.navigate(['/payment']);
+        },
+      });
     }
   }
 }
