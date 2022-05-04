@@ -24,7 +24,7 @@ export class AuthGuardService implements CanActivate {
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
     const user = JSON.parse('' + localStorage.getItem('user'));
-    if (this.cookie.get('token') && user.isAdmin === true) {
+    if (this.cookie.get('token')) {
       return true;
     }
     this.router.navigate(['/login']);

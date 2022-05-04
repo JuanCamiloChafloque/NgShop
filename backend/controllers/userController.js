@@ -49,6 +49,13 @@ exports.getUserById = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, user: user });
 });
 
+exports.getCurrentUser = catchAsyncErrors(async (req, res, next) => {
+  if (!req.user) {
+    return next(new ErrorHandler("There is no current user logged in", 404));
+  }
+  res.status(200).json({ success: true, user: req.user });
+});
+
 exports.updateUserById = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
   if (!req.body.name || !req.body.email) {

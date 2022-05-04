@@ -37,13 +37,14 @@ export class LoginComponent implements OnInit {
       this.usersService.login(email, password).subscribe({
         next: (result) => {
           localStorage.setItem('user', JSON.stringify(result.user));
-          if (result.user.isAdmin) {
+          this.router.navigate(['/']);
+          /*if (result.user.isAdmin) {
             this.router.navigate(['/']);
           } else {
             this.error = true;
             this.errorMessage =
               'Unauthorized: Only administrators can login to this application';
-          }
+          }*/
         },
         error: (err) => {
           this.error = true;

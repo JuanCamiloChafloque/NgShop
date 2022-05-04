@@ -6,6 +6,7 @@ const {
   register,
   login,
   getAllUsers,
+  getCurrentUser,
   getUserById,
   updateUserById,
   deleteUser,
@@ -21,6 +22,7 @@ const {
 router.route("/register").post(register);
 router.route("/login").post(login);
 router.route("/logout").get(logout);
+router.route("/current").get(isAuthenticatedUser, getCurrentUser);
 router.route("/").get(isAuthenticatedUser, isAuthorizedRoles(), getAllUsers);
 router
   .route("/:id")

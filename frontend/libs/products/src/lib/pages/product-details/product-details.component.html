@@ -15,7 +15,7 @@
       </div>
       <div class="product-price">
         {{ product.price | currency }}
-        <span class="price-before">{{ product.price | currency }}</span>
+        <span class="price-before">{{ product.price! + 75 | currency }}</span>
       </div>
       <div class="product-quantity">
         <div class="field col-12 md-3 p-0">

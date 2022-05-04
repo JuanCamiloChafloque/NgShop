@@ -14,6 +14,7 @@ import { OrderSummaryComponent } from './components/order-summary/order-summary.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
+import { AuthGuardService } from '@frontend/users';
 
 export const ordersRoutes: Route[] = [
   {
@@ -22,6 +23,7 @@ export const ordersRoutes: Route[] = [
   },
   {
     path: 'checkout',
+    canActivate: [AuthGuardService],
     component: CheckoutPageComponent,
   },
   {

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Order } from '../../models/Order';
 import * as countriesLib from 'i18n-iso-countries';
-import { User } from '@frontend/users';
+import { User, UsersService } from '@frontend/users';
 import { CartService } from '../../services/cart.service';
 import { Cart } from '../../models/Cart';
 import { OrdersService } from '../../services/orders.service';
@@ -19,20 +19,27 @@ export class CheckoutPageComponent implements OnInit {
   public form!: FormGroup;
   public isSubmitted = false;
   public orderItems: any = [];
-  public user!: User;
+  public user!: any;
   public countries!: any;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private cartService: CartService,
+    private userService: UsersService,
     private ordersService: OrdersService
   ) {}
 
   ngOnInit(): void {
     this.initCheckoutForm();
     this.getCountries();
-    this.user = JSON.parse('' + localStorage.getItem('user'));
+    this.getCurrentUser();
+    //this.user = JSON.parse('' + localStorage.getItem('user'));
+  }
+
+  getCurrentUser() {
+    this.user = this.userService.observeCurrentUser();
+    console.log('USER: ' + this.user);
   }
 
   initCheckoutForm() {
