@@ -18,6 +18,14 @@ export class CartService {
     }
   }
 
+  emptyCart() {
+    const initialCart = {
+      items: [],
+    };
+    localStorage.setItem('cart', JSON.stringify(initialCart));
+    this.cart$.next(initialCart);
+  }
+
   getCart(): Cart {
     const cart: Cart = JSON.parse('' + localStorage.getItem('cart'));
     return cart;

@@ -81,7 +81,7 @@ export class CheckoutPageComponent implements OnInit {
     } else {
       this.getCartItems();
       const order: Order = {
-        user: this.user._id,
+        user: '6268359aa7ec003a1862541a',
         orderItems: this.orderItems,
         shippingAddress1: this.form.controls['street'].value,
         shippingAddress2: this.form.controls['apartment'].value,
@@ -93,7 +93,8 @@ export class CheckoutPageComponent implements OnInit {
 
       this.ordersService.createOrder(order).subscribe({
         next: () => {
-          this.router.navigate(['/payment']);
+          this.cartService.emptyCart();
+          this.router.navigate(['/success']);
         },
       });
     }
