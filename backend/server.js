@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const path = require("path");
 const multer = require("multer");
-const cors = require("cors");
 const db = require("./config/database");
 const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/errors");
@@ -55,8 +54,6 @@ app.use(
 );
 
 //JSON Parser middleware
-//app.use(cors({ credentials: true, origin: true }));
-//app.options("*", cors({ credentials: true }));
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -84,14 +81,6 @@ app.use("/api/v1/orders", orders);
 
 //Error middleware
 app.use(errorMiddleware);
-
-//Build to deployment
-/*if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
-  });
-}*/
 
 //Port listener
 const server = app.listen(
